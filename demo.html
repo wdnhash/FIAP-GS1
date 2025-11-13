@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demo Interativo - NotaryAI</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700;900&display=swap" rel="stylesheet">
+    
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <header class="main-header">
+        <div class="container header-container">
+            <a href="index.html" class="logo">
+                <img src="images/logo.png" alt="Logo NotaryAI" class="logo-img">
+                <h2>NotaryAI</h2>
+            </a>
+            
+            <nav class="main-nav">
+                <a href="index.html">Início</a>
+                <a href="recursos.html">Recursos</a>
+                <a href="sobre.html">Sobre Nós</a>
+                <a href="cadastro.html" id="btn-cad" class="btn">Cadastre-se</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="page-header container">
+            <h1>Demonstração do Assistente</h1>
+            <p>Veja como nossa IA pode responder suas dúvidas em tempo real. Clique em uma das perguntas abaixo para começar.</p>
+        </section>
+
+        <section class="page-content container">
+            <div class="chat-container">
+                <div class="chat-window" id="chat-window">
+                    <div class="chat-message bot-message">
+                        <p>Olá! Eu sou o NotaryAI. Estou aqui para ajudar a desmistificar seus processos de cartório. Em que posso ajudar?</p>
+                    </div>
+                </div>
+                <div class="chat-options">
+                    <button class="btn btn-secondary" onclick="showDemoResponse('O que é uma Matrícula?')">
+                        O que é uma Matrícula?
+                    </button>
+                    <button class="btn btn-secondary" onclick="showDemoResponse('Quais documentos preciso para registrar uma compra?')">
+                        Quais documentos preciso para registrar uma compra?
+                    </button>
+                    <button class="btn btn-secondary" onclick="showDemoResponse('Como vejo o status do meu documento?')">
+                        Como vejo o status do meu documento?
+                    </button>
+                    <button class="btn btn-secondary" onclick="showDemoResponse('Onde fica o cartório mais próximo?')">
+                        Onde fica o cartório mais próximo?
+                    </button>
+                    <button class="btn btn-secondary" onclick="showDemoResponse('Onde fica o 15º Cartório?')">
+                        Onde fica o 15º Cartório?
+                    </button>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="main-footer">
+        <div class="footer-container container">
+            <p>© 2025 NotaryAI. Todos os direitos reservados.</p>
+            <div class="footer-links">
+                <a href="#">Política de Privacidade</a>
+                <a href="#">Termos de Serviço</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

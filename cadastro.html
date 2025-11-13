@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inscrição para o Programa FutureSkills</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700;900&display=swap" rel="stylesheet">
+    
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <header class="main-header">
+        <div class="container header-container">
+            <a href="index.html" class="logo">
+                <img src="images/logo.png" alt="Logo NotaryAI" class="logo-img">
+                <h2>NotaryAI</h2>
+            </a>
+            
+            <nav class="main-nav">
+                <a href="index.html">Início</a>
+                <a href="recursos.html">Recursos</a>
+                <a href="sobre.html">Sobre Nós</a>
+                <a href="cadastro.html" id="btn-cad" class="btn">Cadastre-se</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="page-header container">
+            <h1>Inscrição para o Programa FutureSkills</h1>
+            <p>Insira seus dados e habilidades para participar da nossa visão de futuro do trabalho.</p>
+        </section>
+
+        <section class="page-content container">
+            <div class="form-container">
+                <form class="registration-form" onsubmit="event.preventDefault(); validateForm();">
+                    <div class="form-group">
+                        <label for="nome-completo">Nome Completo</label>
+                        <input type="text" id="nome-completo" name="nome-completo" placeholder="Seu nome completo" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="cpf">CPF</label>
+                        <input type="text" id="cpf" name="cpf" placeholder="Ex: 123.456.789-00" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">E-mail</label>
+                        <input type="email" id="email" name="email" placeholder="seu.email@exemplo.com" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="tipo-interesse">Tipo de Interesse</label>
+                        <select id="tipo-interesse" name="tipo-interesse" required>
+                            <option value="">Selecione um tipo de interesse</option>
+                            <option value="tecnologia-cartorios">Tecnologia para Cartórios</option>
+                            <option value="educacao-juridica">Educação Jurídica</option>
+                            <option value="oportunidades-carreira">Oportunidades de Carreira</option>
+                            <option value="ia-legislacao">IA e Legislação</option>
+                            <option value="sustentabilidade">Sustentabilidade</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="habilidades-select">Selecione Habilidades</label>
+                        <div class="skill-input-group">
+                            <select id="habilidades-select" name="habilidades-select">
+                                <option value="">Selecione uma habilidade</option>
+                                <option value="trabalho-remoto">Trabalho Remoto</option>
+                                <option value="ia">IA</option>
+                                <option value="sustentabilidade">Sustentabilidade</option>
+                                <option value="gestao-documentos">Gestão de Documentos</option>
+                                <option value="direito-digital">Direito Digital</option>
+                            </select>
+                            <button type="button" class="btn btn-secondary add-skill-btn" onclick="addSkill()">Adicionar Habilidade</button>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Habilidades Adicionadas</label>
+                        <div id="habilidades-adicionadas" class="skills-list-area">
+                            <span class="skill-tag">Exemplo (clique para remover)<button type="button" onclick="removeSkill(this)">×</button></span>
+                        </div>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary full-width-btn">Finalizar Cadastro</button>
+
+                    <div id="feedback-area" class="feedback-area">
+                    </div>
+                </form>
+
+                <p class="login-link">Já tem uma conta? <a href="#">Faça Login</a></p>
+            </div>
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        <div class="footer-container container">
+            <p>© 2025 NotaryAI. Todos os direitos reservados.</p>
+            <div class="footer-links">
+                <a href="#">Política de Privacidade</a>
+                <a href="#">Termos de Serviço</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
