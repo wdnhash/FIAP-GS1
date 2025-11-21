@@ -1,5 +1,29 @@
 let addedSkills = [];
 
+function checarEmail(email) {
+    return /\S+@\S+\.\S+/.test(email);
+}
+
+function checarCPF(cpf) {
+    return /^\d{3}\.\d{3}\.\d{3}-\d{2}$/.test(cpf);
+}
+
+function exibirFeedback(vetorErros) {
+    const feedbackArea = document.getElementById('feedback-area');
+    feedbackArea.innerHTML = '';
+
+    if (vetorErros.length > 0) {
+        vetorErros.forEach(msg => {
+            const p = document.createElement('p');
+            p.style.color = 'red';
+            p.textContent = msg;
+            feedbackArea.appendChild(p);
+        });
+    } else {
+        feedbackArea.innerHTML = '<p style="color: green; font-weight: bold;">Formulário validado com sucesso! Dados enviados para processamento.</p>';
+    }
+}
+
 function addSkill() {
     const selectElement = document.getElementById('habilidades-select');
     const skillText = selectElement.options[selectElement.selectedIndex].text;
@@ -9,10 +33,12 @@ function addSkill() {
         addedSkills.push(skillValue);
 
         const skillsListArea = document.getElementById('habilidades-adicionadas');
+        
         const skillTag = document.createElement('span');
         skillTag.classList.add('skill-tag');
         skillTag.setAttribute('data-value', skillValue);
         skillTag.innerHTML = `${skillText} <button type="button" onclick="removeSkill(this)">×</button>`;
+        
         skillsListArea.appendChild(skillTag);
 
         selectElement.value = "";
@@ -26,6 +52,7 @@ function removeSkill(buttonElement) {
     const skillValue = skillTag.getAttribute('data-value');
     
     addedSkills = addedSkills.filter(skill => skill !== skillValue);
+    
     skillTag.remove();
 }
 
@@ -34,18 +61,18 @@ function validateForm() {
     const cpf = document.getElementById('cpf').value;
     const email = document.getElementById('email').value;
     const tipoInteresse = document.getElementById('tipo-interesse').value;
-    const feedbackArea = document.getElementById('feedback-area');
+    
     let feedbackMessages = [];
 
     if (fullName.trim() === '') {
         feedbackMessages.push('Nome Completo é obrigatório.');
     }
 
-    if (!/^\d{3}\.\d{3}\.\d{3}-\d{2}$/.test(cpf)) {
+    if (!checarCPF(cpf)) {
         feedbackMessages.push('CPF inválido. Use o formato XXX.XXX.XXX-XX.');
     }
 
-    if (!/\S+@\S+\.\S+/.test(email)) {
+    if (!checarEmail(email)) {
         feedbackMessages.push('E-mail inválido.');
     }
 
@@ -53,21 +80,13 @@ function validateForm() {
         feedbackMessages.push('Tipo de Interesse é obrigatório.');
     }
 
-    if (addedSkills.length === 0) {
-        feedbackMessages.push('Adicione pelo menos uma habilidade.');
+    if (addedSkills.length < 3) {
+        feedbackMessages.push(`Adicione pelo menos 3 habilidades. (Atual: ${addedSkills.length})`);
     }
 
-    feedbackArea.innerHTML = '';
-    if (feedbackMessages.length > 0) {
-        feedbackMessages.forEach(msg => {
-            const p = document.createElement('p');
-            p.style.color = 'red';
-            p.textContent = msg;
-            feedbackArea.appendChild(p);
-        });
-    } else {
-        feedbackArea.innerHTML = '<p style="color: green;">Formulário validado com sucesso! Dados enviados para processamento.</p>';
-        
+    exibirFeedback(feedbackMessages);
+
+    if (feedbackMessages.length === 0) {
         console.log('Dados do formulário:', {
             fullName,
             cpf,
@@ -100,6 +119,29 @@ function showDemoResponse(userQuery) {
         botResponse = 'Para encontrar o cartório mais próximo, eu precisaria da sua localização. Você pode usar nossa ferramenta "Localizador de Cartórios" na página de Recursos para ver um mapa interativo.';
     } else if (userQuery === 'Onde fica o 15º Cartório?') {
         botResponse = 'O 15º Cartório de Registro de Imóveis de São Paulo fica na R. Conselheiro Crispiniano, 29 - República. Você pode ver o mapa na nossa página "Sobre Nós"!';
+    
+    } else if (userQuery === 'Simular valor do ITBI') {
+        
+        const inputValor = prompt("Por favor, digite o valor do imóvel (apenas números) para a simulação:");
+        
+        if (inputValor) {
+            const valorLimpo = inputValor.replace(/\./g, '').replace(',', '.');
+            const valorNumerico = parseFloat(valorLimpo);
+
+            if (!isNaN(valorNumerico)) {
+                const itbi = valorNumerico * 0.03; 
+                
+                const valorFormatado = valorNumerico.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+                const itbiFormatado = itbi.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+
+                botResponse = `Para um imóvel de <strong>${valorFormatado}</strong>, a estimativa do ITBI (alíquota média de 3%) é de: <br><br><strong style="font-size: 1.2em;">${itbiFormatado}</strong>.`;
+            } else {
+                botResponse = 'Não consegui entender o valor digitado. Por favor, tente novamente usando apenas números.';
+            }
+        } else {
+            botResponse = 'Simulação cancelada. Posso ajudar com algo mais?';
+        }
+
     } else {
         botResponse = 'Desculpe, não entendi essa pergunta na nossa demonstração.';
     }
