@@ -76,7 +76,7 @@ A lógica principal está concentrada na página **`cadastro.html`** e no arquiv
 O projeto segue a organização solicitada para facilitar a avaliação:
 
 ```
-/
+│
 ├── index.html          # Página Inicial (Hero e Visão Geral)
 ├── cadastro.html       # Página do Formulário (Foco da validação JS)
 ├── recursos.html       # Detalhes das ferramentas da IA
