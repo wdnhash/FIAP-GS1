@@ -383,19 +383,36 @@ a {
     font-size: 0.875rem;
 }
 
+/* --- INICIO DAS ALTERAÇÕES DE ALINHAMENTO --- */
 .profile-card-link {
     text-decoration: none;
     color: var(--color-text-primary);
-    display: block;
+    
+    /* Propriedades de Flexbox para alinhar na grid */
+    display: flex;       
+    flex-basis: 300px;   
+    flex-grow: 1;
 }
+
 .profile-card-link .content-card {
+    /* Garante altura total e alinhamento interno */
+    width: 100%;
+    height: 100%;
     transition: all 0.2s ease-in-out;
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    justify-content: center; 
+    box-sizing: border-box; /* Garante que padding não estoure o tamanho */
 }
+
 .profile-card-link .content-card:hover {
     transform: translateY(-4px);
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08);
     border-color: var(--color-brand);
 }
+/* --- FIM DAS ALTERAÇÕES DE ALINHAMENTO --- */
 
 .main-footer {
     padding: 2rem 0;
