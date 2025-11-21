@@ -1,7 +1,5 @@
 # 🏛️ NotaryAI - O Futuro do Trabalho nos Cartórios
 
-![Banner do Projeto NotaryAI](https://via.placeholder.com/1000x300?text=NotaryAI+-+Simplificando+a+Burocracia+com+IA)
-
 > **Global Solution 2025 - FIAP**
 > *Engenharia de Software | Web Development & Front-End Design*
 
